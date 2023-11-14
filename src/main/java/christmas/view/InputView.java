@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 public class InputView {
-    public static final String MENU_REGEX = "^[a-zA-Z]+" + Delimiter.MENU.getSymbol() + "[0-9]+$";
+    public static final String MENU_REGEX = "^[가-힣]+" + Delimiter.MENU.getSymbol() + "[1-9][0-9]*$";
 
     public LocalDate readDate() {
         try {
@@ -27,7 +27,7 @@ public class InputView {
     }
 
     public String[] readOrderMenus() {
-        System.out.println(EventMessage.ASK_TO_ORDER);
+        System.out.println(EventMessage.ASK_TO_ORDER.getMessage());
         String[] input = Console.readLine().split(Delimiter.ORDER.getSymbol());
 
         if (validateOrderPattern(input)) {
