@@ -2,8 +2,7 @@ package christmas.discount;
 
 import christmas.order.Order;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class DiscountService {
     private final Order order;
@@ -12,13 +11,15 @@ public class DiscountService {
         this.order = order;
     }
 
-    public DiscountDetails calculate() {
+    public Optional<DiscountDetails> calculate() {
         try {
             FreeGift freeGift = calculateFreeGift();
-            List<DiscountType> matchedDiscountType = matchDiscountType(freeGift);
-            return new DiscountDetails();
+            List<DiscountType> matchedDiscountTypes = matchDiscountType(freeGift);
+            Map<DiscountType, Integer> map = calculateDiscountAmount(matchedDiscountTypes);
+
+            return Optional.of(new DiscountDetails(map));
         } catch (IllegalArgumentException e) {
-            return new DiscountDetails();
+            return Optional.empty();
         }
     }
 
@@ -38,5 +39,12 @@ public class DiscountService {
 
     private List<DiscountType> findDiscountTypeWith(DateDTO dateDTO) {
         return DiscountType.getDiscountTypes(dateDTO);
+    }
+
+    private Map<DiscountType, Integer> calculateDiscountAmount(List<DiscountType> matchedDiscountTypes) {
+        Map<DiscountType, Integer> details = new HashMap<>();
+        matchedDiscountTypes.forEach(t -> details.put(t, details.getOrDefault(t, 0) + t.calculateDiscountAmount(order)));
+
+        return details;
     }
 }

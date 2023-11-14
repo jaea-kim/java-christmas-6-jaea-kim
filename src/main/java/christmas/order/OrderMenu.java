@@ -33,7 +33,7 @@ public class OrderMenu {
     }
 
     public boolean isBeverage() {
-        return menu.isBeverage();
+        return menu.hasMenuType(MenuType.BEVERAGE);
     }
 
     @Override
@@ -55,5 +55,9 @@ public class OrderMenu {
 
     public int getAmount() {
         return menu.getPrice() * quantity;
+    }
+
+    public boolean hasMenuType(MenuType menuType) {
+        return menu.hasMenuType(menuType);
     }
 }

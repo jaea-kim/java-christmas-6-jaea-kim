@@ -57,4 +57,9 @@ public class OrderMenus {
         }
         return totalAmount;
     }
+
+    public int getMenuCount(MenuType menuType) {
+        return orderMenus.stream().filter(m -> m.hasMenuType(menuType))
+                .mapToInt(OrderMenu::getQuantity).sum();
+    }
 }

@@ -21,4 +21,8 @@ public class Order {
     public DateDTO getDate() {
         return new DateDTO(CustomDay.from(orderDate), orderDate.getDayOfMonth());
     }
+
+    public int getMenuCount(MenuType menuType) {
+        return orderMenus.getMenuCount(menuType);
+    }
 }

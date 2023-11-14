@@ -43,11 +43,11 @@ public enum Menu {
         return label;
     }
 
-    public MenuType getMenuType() {
-        return menuType;
-    }
-
     public int getPrice() {
         return price;
+    }
+
+    public boolean hasMenuType(MenuType menuType) {
+        return this.menuType == menuType;
     }
 }
