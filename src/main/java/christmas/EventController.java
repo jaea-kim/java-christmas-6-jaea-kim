@@ -1,12 +1,11 @@
 package christmas;
 
 import christmas.config.EventMessage;
-import christmas.domain.OrderMenu;
+import christmas.order.Order;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class EventController {
     private final InputView inputView;
@@ -18,13 +17,13 @@ public class EventController {
     }
 
     public void execute() {
-        promptForReservation();
+        Order order = orderWithUserInput();
     }
 
-    private void promptForReservation() {
+    private Order orderWithUserInput() {
         outputView.printMessage(EventMessage.GREETINGS.getMessage());
         LocalDate date = reservationForDate();
-        String[] orderMenus = reservationForMenu();
+        return reserveWith(date);
     }
 
     private LocalDate reservationForDate() {
@@ -37,10 +36,15 @@ public class EventController {
         }
     }
 
-    private String[] reservationForMenu() {
+    private String[] reservationForMenu() throws IllegalArgumentException {
+        return inputView.readOrderMenus();
+    }
+
+    private Order reserveWith(LocalDate date) {
         while (true) {
             try {
-                return inputView.readOrderMenus();
+                String[] menu = reservationForMenu();
+                return new Order(date, menu);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }
