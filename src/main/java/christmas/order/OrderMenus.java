@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class OrderMenus {
     private final List<OrderMenu> orderMenus;
 
-    public OrderMenus(String[] orderMenus) throws IllegalArgumentException {
+    public OrderMenus(String[] orderMenus) {
         List<OrderMenu> orderMenu = createOrderMenuWith(orderMenus);
         validateDuplicate(orderMenu);
         validateMenuType(orderMenu);
@@ -35,7 +35,7 @@ public class OrderMenus {
 
 
     private void validateMenuType(List<OrderMenu> orderMenu) {
-        if (!orderMenu.stream().allMatch(OrderMenu::isBeverage)) {
+        if (orderMenu.stream().allMatch(OrderMenu::isBeverage)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
