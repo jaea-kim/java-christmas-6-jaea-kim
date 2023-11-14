@@ -1,7 +1,6 @@
-package christmas.domain;
+package christmas.order;
 
 import java.time.LocalDate;
-import java.util.Locale;
 
 public class Order {
     private final LocalDate orderDate;

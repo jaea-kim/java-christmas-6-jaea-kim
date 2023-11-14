@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.order;
 
 import christmas.config.ErrorMessage;
 import christmas.config.EventConstants;
