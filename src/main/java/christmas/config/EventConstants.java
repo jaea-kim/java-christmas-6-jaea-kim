@@ -5,7 +5,8 @@ public enum EventConstants {
     EVENT_MONTH(12),
     MIN_QUANTITY(1),
     MAX_ALL_QUANTITY(20),
-    MIN_EVENT_AMOUNT(10000);
+    CHRISTMAS_DAY(25),
+    LAST_DAY(31);
 
     private final int value;
 
