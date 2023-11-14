@@ -24,4 +24,8 @@ public enum FreeGift {
         }
         throw new IllegalArgumentException();
     }
+
+    public boolean hasFreeGift() {
+        return gift != null;
+    }
 }

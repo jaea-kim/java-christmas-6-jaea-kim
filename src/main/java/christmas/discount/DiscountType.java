@@ -2,6 +2,10 @@ package christmas.discount;
 
 import christmas.discount.event.*;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum DiscountType {
     WEEKDAY("평일 할인", new WeekDayDiscountEvent()),
     WEEKEND("주말 할인", new WeekendDiscountEvent()),
@@ -10,7 +14,6 @@ public enum DiscountType {
     FREE_GIFT("증정 이벤트", null),
     NONE("없음", null);
 
-
     private final String message;
     private final DiscountEvent discountEvent;
 
@@ -18,4 +21,10 @@ public enum DiscountType {
         this.message = message;
         this.discountEvent = discountEvent;
     }
+
+    public static List<DiscountType> getDiscountTypes(DateDTO dateDTO) {
+        return Arrays.stream(DiscountType.values()).filter(d -> d.discountEvent != null && d.discountEvent.isExecute(dateDTO))
+                .collect(Collectors.toList());
+    }
+
 }
