@@ -13,5 +13,10 @@ public class WeekDayDiscountEvent implements DiscountEvent {
     public boolean isExecute(DateDTO dateDTO) {
         return DISCOUNT_DAY.contains(dateDTO.day().getDayOfWeek());
     }
+
+    @Override
+    public int calculate() {
+        return 2023;
+    }
 }
 
