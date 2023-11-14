@@ -1,18 +1,55 @@
 package christmas.domain;
 
 import christmas.config.Delimiter;
+import christmas.config.ErrorMessage;
+import christmas.config.EventConstants;
+
+import java.util.Objects;
 
 public class OrderMenu {
     private final Menu menu;
     private final int quantity;
 
-    public OrderMenu(String input) throws IllegalArgumentException {
-        String[] orderMenu = input.split(Delimiter.MENU.getSymbol());
-        this.menu = Menu.getMenuBy(orderMenu[0]);
-        this.quantity = Integer.parseInt(orderMenu[1]);
+    public OrderMenu(String input) {
+        String[] orderMenu = parseInput(input);
+        this.menu = Menu.getMenuByName(orderMenu[0]);
+        this.quantity = parseQuantity(orderMenu[1]);
     }
 
-    private void validateMenu(String orderMenu) {
+    private String[] parseInput(String input) {
+        return input.split(Delimiter.MENU.getSymbol());
+    }
 
+    private int parseQuantity(String inputQuantity) {
+        int quantity = Integer.parseInt(inputQuantity);
+        validateQuantity(quantity);
+        return quantity;
+    }
+
+    private void validateQuantity(int quantity) {
+        if (quantity < EventConstants.MIN_QUANTITY.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
+        }
+    }
+
+    public boolean isBeverage() {
+        return menu.isBeverage();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderMenu orderMenu = (OrderMenu) o;
+        return menu == orderMenu.menu;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(menu);
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }
