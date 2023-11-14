@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import christmas.config.ErrorMessage;
+
 public enum Menu {
     MUSHROOM_SOUP("양송이수프", MenuType.STARTER, 6000),
     TAPAS("타파스", MenuType.STARTER, 5500),
@@ -22,5 +24,14 @@ public enum Menu {
         this.name = name;
         this.menuType = menuType;
         this.price = price;
+    }
+
+    public static Menu getMenuBy(String name) {
+        for (Menu menu : Menu.values()) {
+            if (menu.name.equals(name)) {
+                return menu;
+            }
+        }
+        throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
     }
 }
