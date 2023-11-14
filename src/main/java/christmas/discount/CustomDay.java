@@ -36,4 +36,8 @@ public enum CustomDay {
                 .findFirst()
                 .orElse(null);
     }
+
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
 }
