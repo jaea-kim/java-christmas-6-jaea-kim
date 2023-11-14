@@ -11,8 +11,7 @@ public enum DiscountType {
     WEEKEND("주말 할인", new WeekendDiscountEvent()),
     SPECIAL("특별 할인", new SpecialDiscountEvent()),
     CHRISTMAS("크리스마스 디데이 할인", new ChristmasDiscountEvent()),
-    FREE_GIFT("증정 이벤트", null),
-    NONE("없음", null);
+    FREE_GIFT("증정 이벤트", new FreeGiftDiscountEvent());
 
     private final String message;
     private final DiscountEvent discountEvent;
@@ -23,8 +22,7 @@ public enum DiscountType {
     }
 
     public static List<DiscountType> getDiscountTypes(DateDTO dateDTO) {
-        return Arrays.stream(DiscountType.values()).filter(d -> d.discountEvent != null && d.discountEvent.isExecute(dateDTO))
+        return Arrays.stream(DiscountType.values()).filter(d -> d.discountEvent.isExecute(dateDTO))
                 .collect(Collectors.toList());
     }
-
 }

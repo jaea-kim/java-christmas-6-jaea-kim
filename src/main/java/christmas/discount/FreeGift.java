@@ -4,8 +4,7 @@ import christmas.order.Menu;
 
 public enum FreeGift {
     CHAMPAGNE(120000, Menu.CHAMPAGNE),
-    NONE(10000, null),
-    NO_EVENT(1, null);
+    NONE(10000, null);
 
     private final int payment;
     private final Menu gift;
@@ -27,5 +26,13 @@ public enum FreeGift {
 
     public boolean hasFreeGift() {
         return gift != null;
+    }
+
+    public int getPayment() {
+        return payment;
+    }
+
+    public Menu getGift() {
+        return gift;
     }
 }
