@@ -16,22 +16,38 @@ public enum Menu {
     RED_WINE("레드와인", MenuType.BEVERAGE, 60000),
     CHAMPAGNE("샴페인", MenuType.BEVERAGE, 25000);
 
-    private final String name;
+    private final String label;
     private final MenuType menuType;
     private final int price;
 
-    Menu(String name, MenuType menuType, int price) {
-        this.name = name;
+    Menu(String label, MenuType menuType, int price) {
+        this.label = label;
         this.menuType = menuType;
         this.price = price;
     }
 
-    public static Menu getMenuBy(String name) {
+    public static Menu getMenuByName(String name) {
         for (Menu menu : Menu.values()) {
-            if (menu.name.equals(name)) {
+            if (menu.label.equals(name)) {
                 return menu;
             }
         }
         throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
+    }
+
+    public boolean isBeverage() {
+        return this.menuType.equals(MenuType.BEVERAGE);
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public MenuType getMenuType() {
+        return menuType;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }
