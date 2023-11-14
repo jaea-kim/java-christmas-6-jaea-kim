@@ -52,4 +52,8 @@ public class OrderMenu {
     public int getQuantity() {
         return quantity;
     }
+
+    public int getAmount() {
+        return menu.getPrice() * quantity;
+    }
 }

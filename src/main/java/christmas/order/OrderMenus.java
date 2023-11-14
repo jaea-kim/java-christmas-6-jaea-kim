@@ -49,4 +49,12 @@ public class OrderMenus {
     private int calculateTotalQuantity(List<OrderMenu> orderMenu) {
         return orderMenu.stream().mapToInt(OrderMenu::getQuantity).sum();
     }
+
+    public int calculateTotalAmount() {
+        int totalAmount = 0;
+        for (OrderMenu menu : orderMenus) {
+            totalAmount += menu.getAmount();
+        }
+        return totalAmount;
+    }
 }
