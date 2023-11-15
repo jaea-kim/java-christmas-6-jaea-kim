@@ -1,7 +1,7 @@
 package christmas.discount.event;
 
 import christmas.discount.DateDTO;
-import christmas.discount.FreeGift;
+import christmas.discount.domain.FreeGift;
 
 public class FreeGiftDiscountEvent implements DiscountEvent {
     @Override

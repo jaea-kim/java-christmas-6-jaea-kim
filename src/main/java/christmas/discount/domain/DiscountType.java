@@ -1,5 +1,6 @@
-package christmas.discount;
+package christmas.discount.domain;
 
+import christmas.discount.DateDTO;
 import christmas.discount.event.*;
 import christmas.order.MenuType;
 import christmas.order.Order;

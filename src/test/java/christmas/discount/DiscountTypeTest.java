@@ -2,6 +2,7 @@ package christmas.discount;
 
 import christmas.config.Delimiter;
 import christmas.config.EventConstants;
+import christmas.discount.domain.DiscountType;
 import christmas.order.Menu;
 import christmas.order.Order;
 import org.assertj.core.api.Assertions;

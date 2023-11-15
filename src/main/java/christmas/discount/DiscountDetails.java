@@ -1,5 +1,7 @@
 package christmas.discount;
 
+import christmas.discount.domain.DiscountType;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

@@ -1,5 +1,7 @@
 package christmas.discount;
 
+import christmas.discount.domain.DiscountType;
+import christmas.discount.domain.FreeGift;
 import christmas.order.Order;
 
 import java.util.*;

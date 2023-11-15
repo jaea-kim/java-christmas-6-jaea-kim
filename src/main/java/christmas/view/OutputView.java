@@ -1,7 +1,7 @@
 package christmas.view;
 
 import christmas.config.EventMessage;
-import christmas.discount.FreeGift;
+import christmas.discount.domain.FreeGift;
 
 import java.util.List;
 
