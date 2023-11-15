@@ -27,20 +27,18 @@ public class EventController {
 
     private void printBenefitInformation(Order order) {
         Optional<DiscountDetails> discountDetails = calculateDiscount(order);
-        if (discountDetails.isPresent()) {
-            printBenefitDetailInformation(discountDetails.get());
-            return;
-        }
-        printNoBenefit();
+        discountDetails.ifPresentOrElse(
+                this::printBenefitDetailInformation, this::printNoBenefit
+        );
     }
 
     private Order orderWithUserInput() {
         outputView.printMessage(EventMessage.GREETINGS.getMessage());
-        LocalDate date = reservationForDate();
-        return reserveWith(date);
+        LocalDate date = getReservationForDate();
+        return getOrderForReservation(date);
     }
 
-    private LocalDate reservationForDate() {
+    private LocalDate getReservationForDate() {
         while (true) {
             try {
                 return inputView.readDate();
@@ -48,16 +46,17 @@ public class EventController {
                 outputView.printMessage(e.getMessage());
             }
         }
+
     }
 
-    private String[] reservationForMenu() throws IllegalArgumentException {
+    private String[] getReservationForMenu() throws IllegalArgumentException {
         return inputView.readOrderMenus();
     }
 
-    private Order reserveWith(LocalDate date) {
+    private Order getOrderForReservation(LocalDate date) {
         while (true) {
             try {
-                String[] menu = reservationForMenu();
+                String[] menu = getReservationForMenu();
                 return new Order(date, menu);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
