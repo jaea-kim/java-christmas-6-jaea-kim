@@ -3,6 +3,7 @@ package christmas;
 import christmas.config.EventMessage;
 import christmas.discount.DiscountDetails;
 import christmas.discount.DiscountService;
+import christmas.discount.domain.Badge;
 import christmas.order.Order;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -28,7 +29,7 @@ public class EventController {
     private void printBenefitInformation(Order order) {
         Optional<DiscountDetails> discountDetails = calculateDiscount(order);
         discountDetails.ifPresentOrElse(
-                this::printBenefitDetailInformation, this::printNoBenefit
+                d -> printBenefitDetailInformation(d, order.totalAmountBeforeDiscount()), () -> printNoBenefit(order.totalAmountBeforeDiscount())
         );
     }
 
@@ -46,7 +47,6 @@ public class EventController {
                 outputView.printMessage(e.getMessage());
             }
         }
-
     }
 
     private String[] getReservationForMenu() throws IllegalArgumentException {
@@ -75,15 +75,18 @@ public class EventController {
         outputView.printTotalAmountBeforeDiscount(order.totalAmountBeforeDiscount());
     }
 
-    private void printBenefitDetailInformation(DiscountDetails discountDetails) {
+    private void printBenefitDetailInformation(DiscountDetails discountDetails, int totalAmountBeforeDiscount) {
         outputView.printFreeGift(discountDetails.hasFreeGift());
         outputView.printBenefitInformation(discountDetails.getDetail());
         outputView.printTotalBenefitAmount(discountDetails.totalDiscountAmount());
+        outputView.printExpectedAmount(totalAmountBeforeDiscount - discountDetails.totalDiscountAmount());
+        outputView.printBadge(Badge.getBadgeByAmount(discountDetails.totalDiscountAmount()).getLabel());
     }
 
-
-    private void printNoBenefit() {
+    private void printNoBenefit(int totalAmountBeforeDiscount) {
         outputView.printFreeGift(false);
         outputView.printNoBenefit();
+        outputView.printExpectedAmount(totalAmountBeforeDiscount);
+        outputView.printBadge(Badge.NONE.getLabel());
     }
 }

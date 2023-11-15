@@ -52,4 +52,14 @@ public class OutputView {
         System.out.println(EventMessage.TOTAL_BENEFIT_AMOUNT.getMessage());
         System.out.printf(BENEFIT_FORMAT, total);
     }
+
+    public void printExpectedAmount(int amount) {
+        System.out.println(EventMessage.PAYMENT_AMOUNT.getMessage());
+        System.out.printf(MONEY_FORMAT, amount);
+    }
+
+    public void printBadge(String label) {
+        System.out.println(EventMessage.EVENT_BADGE.getMessage());
+        System.out.println(label);
+    }
 }
