@@ -23,7 +23,7 @@ public class DiscountDetails {
         return message;
     }
 
-    public int totalDiscountAmount(){
+    public int totalDiscountAmount() {
         return discountDetails.values().stream().mapToInt(Integer::intValue).sum();
     }
 }

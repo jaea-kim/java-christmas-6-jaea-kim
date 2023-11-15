@@ -1,7 +1,6 @@
 package christmas.discount.domain;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public enum Badge implements Comparable<Badge> {
 

@@ -1,7 +1,5 @@
 package christmas.order;
 
-import christmas.config.Delimiter;
-import christmas.config.EventConstants;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
