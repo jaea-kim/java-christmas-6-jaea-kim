@@ -2,11 +2,9 @@ package christmas.order;
 
 import christmas.config.ErrorMessage;
 import christmas.config.EventConstants;
+import christmas.view.MessageDTO;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class OrderMenus {
@@ -61,5 +59,13 @@ public class OrderMenus {
     public int getMenuCount(MenuType menuType) {
         return orderMenus.stream().filter(m -> m.hasMenuType(menuType))
                 .mapToInt(OrderMenu::getQuantity).sum();
+    }
+
+    public MessageDTO getOrderMenu() {
+        ArrayList<String> orderMenuInfo = new ArrayList<>();
+        for (OrderMenu menu : orderMenus) {
+            orderMenuInfo.add(menu.getInformation());
+        }
+        return new MessageDTO(orderMenuInfo);
     }
 }

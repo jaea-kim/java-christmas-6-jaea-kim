@@ -60,4 +60,8 @@ public class OrderMenu {
     public boolean hasMenuType(MenuType menuType) {
         return menu.hasMenuType(menuType);
     }
+
+    public String getInformation() {
+        return menu.getLabel() + " " + quantity + "개";
+    }
 }

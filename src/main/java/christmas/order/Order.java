@@ -2,6 +2,7 @@ package christmas.order;
 
 import christmas.discount.CustomDay;
 import christmas.discount.DateDTO;
+import christmas.view.MessageDTO;
 
 import java.time.LocalDate;
 
@@ -24,5 +25,9 @@ public class Order {
 
     public int getMenuCount(MenuType menuType) {
         return orderMenus.getMenuCount(menuType);
+    }
+
+    public MessageDTO getOrderMenus() {
+        return orderMenus.getOrderMenu();
     }
 }
