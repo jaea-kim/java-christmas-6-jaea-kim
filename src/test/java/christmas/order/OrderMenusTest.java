@@ -58,4 +58,15 @@ class OrderMenusTest {
         Assertions.assertThatThrownBy(() -> new OrderMenus(orderMenus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("주어진 MenuType에 해당하는 주문 수량을 반환해야 한다.")
+    void get_count_about_menu_type() {
+        int quantity = 5;
+        String orderMenuString = Menu.MUSHROOM_SOUP.getLabel() + Delimiter.MENU.getSymbol() + quantity;
+        OrderMenu orderMenu = new OrderMenu(orderMenuString);
+        OrderMenus orderMenus = new OrderMenus(List.of(orderMenu));
+
+        Assertions.assertThat(orderMenus.getMenuCount(MenuType.STARTER)).isEqualTo(quantity);
+    }
 }
