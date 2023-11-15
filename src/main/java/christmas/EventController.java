@@ -1,9 +1,9 @@
 package christmas;
 
 import christmas.config.EventMessage;
-import christmas.discount.DiscountDetails;
 import christmas.discount.DiscountService;
 import christmas.discount.domain.Badge;
+import christmas.discount.domain.DiscountDetails;
 import christmas.order.Order;
 import christmas.view.InputView;
 import christmas.view.OutputView;

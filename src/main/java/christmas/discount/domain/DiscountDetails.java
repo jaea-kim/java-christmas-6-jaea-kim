@@ -1,6 +1,4 @@
-package christmas.discount;
-
-import christmas.discount.domain.DiscountType;
+package christmas.discount.domain;
 
 import java.util.ArrayList;
 import java.util.List;
