@@ -4,24 +4,19 @@ import christmas.config.ErrorMessage;
 import christmas.config.EventConstants;
 import christmas.view.MessageDTO;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class OrderMenus {
     private final List<OrderMenu> orderMenus;
 
-    public OrderMenus(String[] orderMenus) {
-        List<OrderMenu> orderMenu = createOrderMenuWith(orderMenus);
-        validateDuplicate(orderMenu);
-        validateMenuType(orderMenu);
-        validateMenuQuantity(orderMenu);
-        this.orderMenus = orderMenu;
-    }
-
-    private List<OrderMenu> createOrderMenuWith(String[] orderMenus) throws IllegalArgumentException {
-        return Arrays.stream(orderMenus)
-                .map(OrderMenu::new)
-                .collect(Collectors.toList());
+    public OrderMenus(List<OrderMenu> orderMenus) {
+        validateDuplicate(orderMenus);
+        validateMenuType(orderMenus);
+        validateMenuQuantity(orderMenus);
+        this.orderMenus = orderMenus;
     }
 
     private void validateDuplicate(List<OrderMenu> orderMenu) {
